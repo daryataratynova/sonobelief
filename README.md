@@ -64,20 +64,6 @@ Expected validation results at K = 8:
 Training takes about 1 h on one RTX PRO 6000. Outputs go to `runs/`, generated data to `work/`.
 Models were selected on validation only.
 
-## Results
-
-AUPRC at K = 8 with 95% patient-bootstrap CI:
-
-| | TotalSeg test (n = 34) | ENHANCE.PET (n = 35) | AMOS22 (n = 63) |
-|---|---|---|---|
-| Population prior (K = 0) | 0.063 [0.045, 0.084] | 0.052 [0.039, 0.067] | 0.062 [0.047, 0.079] |
-| Point estimate | 0.145 [0.101, 0.196] | 0.105 [0.078, 0.136] | 0.086 [0.061, 0.112] |
-| Pose posterior | 0.157 [0.109, 0.213] | 0.117 [0.090, 0.148] | 0.096 [0.069, 0.125] |
-| SonoBelief | 0.171 [0.122, 0.223] | 0.144 [0.110, 0.184] | 0.123 [0.093, 0.155] |
-| Oracle placement (pose-only) | 0.168 [0.118, 0.221] | 0.131 [0.104, 0.159] | 0.096 [0.070, 0.124] |
-
-External results pool both cohorts of each dataset.
-
 ## Citation
 
 Coming soon.
