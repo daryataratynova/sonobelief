@@ -10,7 +10,7 @@ tags:
 
 # SonoBelief weights
 
-Frozen components of SonoBelief. Code: [github.com/daryataratynova8/sonobelief](https://github.com/daryataratynova8/sonobelief).
+Frozen components of SonoBelief. Code: [github.com/daryataratynova/sonobelief](https://github.com/daryataratynova/sonobelief).
 
 Trained on TotalSegmentator v2.0.1 (302 train studies), selected on validation (38 studies), seed 0.
 The models take simulated label-map views rendered from CT, not ultrasound images.

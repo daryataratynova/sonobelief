@@ -12,7 +12,6 @@ python -m sonobelief.evaluate.target_belief --split val                       # 
 python -m sonobelief.evaluate.anatomy --cfm_run $CFM --split val --K 1 2 4 8 --Mp 4 --n_lap 16 --lm_iters 30 \
   --out atypical_val.json                                                       # val: sigma^2 from val itself
 python -m sonobelief.evaluate.atypical --run $CFM --csv atypical_val_per_condition.csv --out atypical_val_summary.json
-python -m sonobelief.evaluate.geometry_ceiling --head weights/exact_geometry_head --all_masks
 
 # test: once, with the frozen configuration (configs/target_belief_frozen.json)
 python -m sonobelief.evaluate.target_belief --split test --reopen_test

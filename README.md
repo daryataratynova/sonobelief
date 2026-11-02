@@ -13,7 +13,7 @@ All data is simulated from CT segmentations.
 ## Install
 
 ```bash
-git clone https://github.com/daryataratynova8/sonobelief && cd sonobelief
+git clone https://github.com/daryataratynova/sonobelief && cd sonobelief
 pip install -r requirements.txt && pip install -e .
 ```
 
