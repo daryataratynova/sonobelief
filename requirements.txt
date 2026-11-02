@@ -1,0 +1,11 @@
+# Versions used for the paper (Python 3.12.3, CUDA 13.0, one NVIDIA RTX PRO 6000 Blackwell).
+torch==2.13.0
+numpy==2.3.5
+scipy==1.18.1
+pandas==3.0.5
+nibabel==5.4.2
+matplotlib==3.11.1
+scikit-learn==1.9.1
+scikit-image==0.26.0
+TotalSegmentator==2.18.0
+huggingface_hub==1.31.0

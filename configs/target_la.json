@@ -1,0 +1,52 @@
+{
+ "name": "target_la",
+ "description": "T_GB^LA(P) = V(P) and A(P) and C(P) and Q(P): probe poses producing an acceptable long-axis GB view; A = long axis in the image plane (<= 20 deg) and not beam-parallel (presentation angle phi >= 45 deg: the GB runs more across the image than along the beam)",
+ "status": "frozen 2026-10-23 (final; chosen on train/val only incl. the phi >= 45 deg presentation rule; not to be adjusted)",
+ "visible": {
+  "area_rel_min": 0.5,
+  "area_min_mm2": 100.0,
+  "depth_mm": [
+   30.0,
+   150.0
+  ]
+ },
+ "aligned": {
+  "align_max_deg": 20.0,
+  "presentation_min_deg": 45.0
+ },
+ "contained": {
+  "center_max_frac_half_sector": 0.6,
+  "clip_max": 0.05,
+  "long_frac_min": 0.7
+ },
+ "acoustic": {
+  "shadow_frac_max": 0.25
+ },
+ "applicability": {
+  "status": "frozen 2026-10-23 (thresholds derived on train/val only; test labelled with the frozen rules)",
+  "max_axis_instability_deg": 10.0,
+  "rule_applicable": "applicable iff axis instability <= max_axis_instability_deg (half the 20 deg alignment tolerance; 1-voxel erosion, dilation, 20 random boundary perturbations)",
+  "rule_available": "available iff T_subcostal-LA (dense subcostal bank) is non-empty",
+  "f_min": 0.00525,
+  "rule_difficult": "difficult iff available and |T_subcostal-LA| / |sampled A_subcostal poses| < f_min = 5th percentile over applicable, available train/val studies"
+ },
+ "approach": {
+  "status": "frozen 2026-10-23 after the dense-sampling QC (train/val only). A_subcostal is our operationalisation of the clinically described right-subcostal approach, not a clinical standard. T_subcostal-LA = T_LA \u2229 A_subcostal",
+  "anterior_mm": 30.0,
+  "max_left_mm": 30.0,
+  "band_above_mm": 10.0,
+  "band_below_mm": 100.0,
+  "normal_azimuth_deg": [
+   -30.0,
+   60.0
+  ],
+  "min_cephalad_deg": -20.0,
+  "max_from_posterior_deg": 60.0
+ },
+ "target": {
+  "name": "T_subcostal-LA",
+  "definition": "T_LA \u2229 A_subcostal; possibly multimodal (T = T1 \u222a T2), the error to a prediction is the distance to the closest valid pose",
+  "pose_distance": "skin mm + rotation deg, rotation modulo the 180 deg flip about the beam (roll + 180 shows the same plane mirrored)",
+  "status": "frozen 2026-10-23"
+ }
+}

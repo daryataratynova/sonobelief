@@ -1,0 +1,10 @@
+__pycache__/
+*.egg-info/
+work/
+runs/
+# weights are on Hugging Face (scripts/download_weights.sh); the encodings are derived per dataset
+weights/*/*.pt
+weights/*/embeddings_*.npz
+weights/*/z_L_*.npz
+weights/*/atypical_*
+weights/*/hybrid_traj_*

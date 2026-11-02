@@ -1,0 +1,15 @@
+{
+ "name": "liver_shape",
+ "z_dim": 32,
+ "batch": 32,
+ "steps": 15000,
+ "warmup_steps": 500,
+ "lr": 0.001,
+ "weight_decay": 0.01,
+ "z_noise": 0.1,
+ "aug": true,
+ "aug_rot_deg": 10,
+ "aug_scale": 0.1,
+ "eval_every": 1000,
+ "seed": 0
+}

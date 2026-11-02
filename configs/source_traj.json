@@ -1,0 +1,70 @@
+{
+ "name": "source_subcostal_sweep",
+ "status": "frozen 2026-10-23 (generator QC on 24 train/val patients; censoring rule chosen on train/val)",
+ "description": "GB-blind subcostal liver sweep: start high epigastric / right subcostal under the costal margin, move laterally along the right costal margin keeping a useful liver window. Uses only skin, bone/air blockers, costal margin and liver.",
+ "n_traj_per_study": 8,
+ "max_steps": 60,
+ "search_px_mm": 2.0,
+ "start": {
+  "x_right_of_midline_mm": [
+   0.0,
+   40.0
+  ],
+  "below_margin_mm": [
+   5.0,
+   30.0
+  ],
+  "cephalad_tilt_deg": [
+   15.0,
+   35.0
+  ],
+  "plane_from_longitudinal_deg": 20.0,
+  "tries": 200
+ },
+ "neighbourhood": {
+  "n": 64,
+  "slide_mm": 6.0,
+  "fan_deg": 5.0,
+  "rock_deg": 5.0,
+  "rotate_deg": 8.0
+ },
+ "constraints": {
+  "contact_min": 0.85,
+  "contact_depth_mm": 20.0,
+  "liver_min_mm2": 1500.0,
+  "shadow_max": 0.5,
+  "sweep_below_margin_mm": 50.0,
+  "progress_min_mm": 1.0
+ },
+ "objective": {
+  "liver_ref_mm2": 6000.0,
+  "lambda_shadow": 1.0,
+  "lambda_motion": 0.3,
+  "lambda_progress": 1.0,
+  "temperature": 0.15
+ },
+ "posthoc": {
+  "censoring": "target_visibility_V",
+  "censoring_rule": "t_GB = first pose t (0-based) where the frozen target visibility criterion V of configs/target_la.json holds: geometric GB area in the fan >= max(0.5 * A_max, 100 mm^2) and GB centroid depth 30-150 mm. Source observations = O_1:t_GB (poses 0..t_GB-1), the pre-target-acquisition observations. A sub-threshold GB sliver may already be in those frames. If V never holds, the whole trajectory is pre-acquisition.",
+  "gb_glimpse_mm2": 100.0,
+  "K_main": [
+   1,
+   2,
+   4,
+   8
+  ],
+  "K_extra": [
+   16
+  ]
+ },
+ "notes": "contact_depth_mm 20: the probe face is pressed into the skin (soft-tissue compression 1-2 cm), a 12 mm allowance rejected most epigastric starts; progress_min_mm +1: a sweep is monotone laterally (with -1 the search stalled)",
+ "observation": {
+  "img": 128,
+  "channels": [
+   "liver_in_fan",
+   "body_in_fan (FOV)",
+   "acoustic_shadow_in_fan"
+  ],
+  "notes": "train/fan_geometry pixel grid (128x128, 1.85 mm); liver channel cleaned with train/observation.clean_observation (components < 1 cm^2 removed), geometric (shadow not applied); shadow = behind the first bone/air blocker (gb_target.Patient.shadow); bit-packed along the last axis. Rendered from the GB-blind patient (labels body/liver only, as data/planes)."
+ }
+}

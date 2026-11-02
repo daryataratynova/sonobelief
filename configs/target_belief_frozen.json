@@ -1,0 +1,32 @@
+{
+ "frozen": "2026-10-25, every component chosen on train/val only, before the single test evaluation",
+ "method": "O_1:K -> p(p_L | O) (placement CFM samples) -> s(P) = mean over placement samples of sigmoid g_pose(P in the sampled liver frame); secondary refinement: z_L ~ Laplace around the occlusion-aware MAP -> (r_GB, a_GB, l_GB) ~ p(. | z_L) -> inferred-geometry head",
+ "cfm_run": "weights/flow",
+ "pose_head": "weights/pose_head",
+ "geom_head": "weights/geometry_head",
+ "geometry_conditional": "refit on train inside sonobelief.evaluate.target_belief: r_GB ridge 0.1, log l ridge 1, Q = a a^T kernel ridge (bandwidth / lambda by train OOF axis error), joint train OOF residual tuples",
+ "z_inference": "sonobelief.belief.lm_fit, occlusion-aware forward model, naive-MAP start, 30 LM iterations, sigma^2 untempered",
+ "sigma_json": "weights/observation_model/sigma2_trajectories.json",
+ "M": 32,
+ "K": [
+  0,
+  1,
+  2,
+  4,
+  8
+ ],
+ "variants": [
+  "population (K=0)",
+  "point",
+  "posterior (main)",
+  "posterior_geom (secondary)",
+  "oracle placement"
+ ],
+ "primary_K": [
+  1,
+  2,
+  4,
+  8
+ ],
+ "candidate_set": "work/target_bank_blind (GB-blind, 8000 poses per study, frozen T_subcostal-LA labels)"
+}

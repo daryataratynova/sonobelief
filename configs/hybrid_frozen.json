@@ -1,0 +1,21 @@
+{
+ "frozen": "2026-10-23, chosen on val only, before any test evaluation",
+ "method": "hybrid: p(p_L|O) placement CFM (unweighted samples) x p(z_L|p_L,O) Laplace around the D_obs MAP x p(r_GB|z_L) Gaussian (ridge mean, out-of-fold residual covariance)",
+ "cfm_run": "weights/flow_planes",
+ "zl_run": "weights/liver_shape",
+ "obs_run": "weights/observation_model",
+ "E_img": "weights/image_encoder",
+ "M": 64,
+ "ode_steps": 25,
+ "map": {
+  "steps": 300,
+  "lr": 0.05,
+  "sigma2_from": "weights/observation_model/results.json"
+ },
+ "r_gb_conditional": {
+  "ridge_lambda": 0.1,
+  "cov": "10-fold out-of-fold residuals on train"
+ },
+ "importance_reweighting": "not used: on val it collapsed ESS to ~1 and worsened rotation calibration without improving GB (research ablation)",
+ "baseline_on_test": "not part of this release (joint MAP, research step 1d)"
+}

@@ -1,0 +1,30 @@
+{
+ "name": "flow_planes",
+ "zl_run": "weights/liver_shape",
+ "obs_run": "weights/observation_model",
+ "d": 256,
+ "layers": 4,
+ "heads": 8,
+ "seeds": 4,
+ "width": 512,
+ "depth": 6,
+ "dropout": 0.1,
+ "batch": 512,
+ "steps": 60000,
+ "warmup_steps": 1000,
+ "lr": 0.0003,
+ "weight_decay": 0.01,
+ "grad_clip": 1.0,
+ "target_noise": 0.0,
+ "state": "placement",
+ "eval_every": 1000,
+ "patience": 10,
+ "seed": 0,
+ "eval": {
+  "trials": 4,
+  "M": 128,
+  "ode_steps": 25,
+  "dice_samples": 8,
+  "heldout": 32
+ }
+}
